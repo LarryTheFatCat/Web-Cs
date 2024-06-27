@@ -102,6 +102,49 @@
         </div>
       </div>
     </nav>
+    <div class="flex items-center h-screen">
+      <div
+        class="max-w-96 bg-base-200 mx-auto rounded-2xl h-2/3 p-5 text-center sm:w-96"
+      >
+        <h4 class="text-xl font-bold underline">Sign Up</h4>
+        <div class="relative top-[50px]">
+          <label
+          class="input input-bordered input-primary flex items-center gap-2"
+          id="email_label"
+        >
+          <img
+            src="../assets/email.svg"
+            class="h-4 w-4 "
+            alt="Password Svg"
+          />
+          <input
+            type="text"
+            class="grow"
+            placeholder="Email"
+            id="user_password"
+          />
+        </label>
+        <br>
+        <label class="input input-bordered input-primary flex items-center gap-2">
+          <img src="../assets/user.svg" alt="Username SVG input logo" class="h-4 w-4">
+          <input type="text" class="grow" placeholder="Username" id="user_username">
+        </label>
+        <br>
+        <label class="input input-bordered input-primary flex items-center gap-2">
+          <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
+          <input type="password" class="grow" placeholder="Password">
+        </label>
+        <br>
+        <label class="input input-bordered input-primary flex items-center gap-2">
+          <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
+          <input type="password" class="grow" placeholder="Confirm Password">
+        </label>
+        <button type="button" class="btn btn-primary mt-5" onclick="checkLogin()">
+          Login
+        </button>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="./script/script.js"></script>
 </html>

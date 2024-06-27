@@ -5,8 +5,6 @@ const toolTip = document.getElementById("tooltip");
 const usernameLabel = document.getElementById("user_label");
 const passwordLabel = document.getElementById("password_label");
 
-const navContent = document.getElementById("navbar_content");
-
 function checkLogin() {
     let regexUsername = /^[a-zA-Z0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
