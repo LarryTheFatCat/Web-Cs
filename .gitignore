@@ -399,7 +399,3 @@ FodyWeavers.xsd
 
 # Tailwind CSS output.css
 output.css
-.env*
-.flaskenv*
-!.env.project
-!.env.vault
