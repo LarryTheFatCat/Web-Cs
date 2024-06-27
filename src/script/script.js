@@ -3,15 +3,21 @@ const password = document.getElementById("user_password");
 const toolTip = document.getElementById("tooltip");
 
 const usernameLabel = document.getElementById("user_label");
-const passwordLabel = document.getElementById("password_label")
+const passwordLabel = document.getElementById("password_label");
+
+const navContent = document.getElementById("navbar_content");
+
 function checkLogin() {
     let regexUsername = /^[a-zA-Z0-9]+$/;
-    let regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-=_+{}[\]:;"'<>,.?/]).{8,16}$/;
+    let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
 
-    if (regexUsername.test(username.value) && regexPassword.test(password.value) == true) {
+    if (regexUsername.test(username.value) == true && regexPassword.test(password.value) == true) {
         // @todo: transition to main webpage showing classrooms && implement admin feature soon™
         usernameLabel.classList.remove('input-error');
         usernameLabel.classList.add('input-primary');
+
+        passwordLabel.classList.remove('input-error');
+        passwordLabel.classList.add('input-primary');
     } else if (regexUsername.test(username.value) == false && regexPassword.test(password.value) == false) {
 
         usernameLabel.classList.remove('input-primary');
@@ -33,6 +39,5 @@ function checkLogin() {
         usernameLabel.classList.add('input-error');
 
         toolTip.classList.remove("hidden");
-
     }
 }
