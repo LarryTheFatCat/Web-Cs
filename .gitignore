@@ -402,4 +402,4 @@ output.css
 .env*
 .flaskenv*
 !.env.project
-.env.vault
+!.env.vault
