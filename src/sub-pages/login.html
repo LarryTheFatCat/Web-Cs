@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../output.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <nav class="navbar bg-base-200 shadow-md shadow-base-300">
+      <div class="flex-1">
+        <a href="../index.html">
+          <button type="button" class="btn btn-ghost">Online Classroom</button>
+        </a>
+      </div>
+      <div class="flex-none">
+        <a href="./login.html">
+          <button type="button" class="btn border-b-stone-400 mr-4">
+            Login
+          </button>
+        </a>
+        <a href="./sub-pages/login.html">
+          <button
+            type="button"
+            class="btn border-b-stone-300"
+            href="sign-up.html"
+          >
+            Sign Up
+          </button>
+        </a>
+      </div>
+    </nav>
+    <div class="flex items-center justify-center h-screen">
+      <div class="w-96 bg-base-200 rounded-2xl h-96 p-5 text-center">
+        <h4 class="text-xl font-bold underline">Login</h4>
+        <div id="input_contents" class="relative top-[50px]">
+          <div
+            id="tooltip"
+            class="tooltip tooltip-top tooltip-open hidden"
+            data-tip="Please enter a valid Username / Password"
+          ></div>
+          <label
+            class="input input-bordered input-primary flex items-center gap-2"
+            id="user_label"
+          >
+            <img
+              src="../assets/email.svg"
+              class="h-4 w-4 opacity-70"
+              alt="Email Svg"
+            />
+            <input
+              type="text"
+              id="user_username"
+              class="grow"
+              placeholder="Email"
+            />
+          </label>
+          <br />
+          <br />
+          <label
+            class="input input-bordered input-primary flex items-center gap-2"
+            id="password_label"
+          >
+            <img
+              src="../assets/key.svg"
+              class="h-4 w-4 opacity-70"
+              alt="Password Svg"
+            />
+            <input
+              type="text"
+              class="grow"
+              placeholder="Password"
+              id="user_password"
+            />
+          </label>
+          <!-- <label for="user_password" class="font-thin">Password</label>
+          <input
+            id="user_password"
+            type="password"
+            placeholder="Type here"
+            class="input input-bordered input-primary w-3/5 sm:max-w-sm"
+          /> -->
+          <button class="btn btn-primary mt-5" onclick="checkLogin()">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../script/script.js"></script>
+</html>
