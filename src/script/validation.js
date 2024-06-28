@@ -21,6 +21,7 @@ function checkLogin() {
 
         passwordLabel.classList.remove('input-error');
         passwordLabel.classList.add('input-primary');
+        return location.href = "/src/classes.html"
     } else if (regexUsername.test(username.value) == false && regexPassword.test(password.value) == false) {
 
         usernameLabel.classList.remove('input-primary');
@@ -43,13 +44,17 @@ function checkLogin() {
 
         toolTip.classList.remove("hidden");
     }
+
+    if(username.value == "TeacherAccessName" && password == "TeacherPassword") {
+        // toggle teacher admin section, mainly create classroom popup and some permissions
+    }
 }
 
 function checkSignUp() {
     let regexUsername = /^[a-zA-Z0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (regexUsername.test(username.value) == true && regexPassword.test(password.value) == true) {
+    if (!regexUsername.test(username.value) && regexPassword.test(password.value) == true) {
         // @todo: transition to main webpage showing classrooms && implement admin feature soon™
         usernameLabel.classList.remove('input-error');
         usernameLabel.classList.add('input-primary');
@@ -59,7 +64,7 @@ function checkSignUp() {
         return false
     }
 
-    if (regexUsername.test(username.value) == false && regexPassword.test(password.value) == false) {
+    if (!regexUsername.test(username.value) && !regexPassword.test(password.value)) {
         usernameLabel.classList.remove('input-primary');
         usernameLabel.classList.add('input-error');
 
@@ -67,22 +72,22 @@ function checkSignUp() {
         passwordLabel.classList.add('input-error');
         return false;
     }
-    if (regexUsername.test(username.value) == true && regexPassword.test(password.value) == false) {
+    if (regexUsername.test(username.value) == true && !regexPassword.test(password.value)) {
         passwordLabel.classList.remove('input-primary');
         passwordLabel.classList.add('input-error');
         return false;
     }
-    if (regexUsername.test(username.value) == false && regexPassword.test(password.value) == true) {
+    if (!regexUsername.test(username.value) && regexPassword.test(password.value) == true) {
         usernameLabel.classList.remove('input-primary');
         usernameLabel.classList.add('input-error');
         return false;
     }
-    if(regexEmail.test(email) == false) {
+    if(!regexEmail.test(email.value)) {
         emailLabel.classList.remove('input-primary');
         emailLabel.classList.add('input-error');
         return false;
     }
-    if(regexPassword.test(userPasswordConfirm) == false) {
+    if(!regexPassword.test(userPasswordConfirm.value)) {
         userPasswordConfirmLabel.classList.remove('input-primary');
         userPasswordConfirmLabel.classList.add('input-error');
         return false;
@@ -94,6 +99,5 @@ function checkSignUp() {
         userPasswordConfirmLabel.classList.add('input-error');
         return false;
     }
-    return true;
 }
 
