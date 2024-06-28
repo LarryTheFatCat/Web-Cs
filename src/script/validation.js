@@ -11,7 +11,7 @@ const userPasswordConfirm = document.getElementById("user_password_confirm");
 const userPasswordConfirmLabel = document.getElementById("password_label_confirm");
 
 function checkLogin() {
-    let regexUsername = /^[a-zA-Z0-9]+$/;
+    let regexUsername = /^[0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
 
     if (regexUsername.test(username.value) == true && regexPassword.test(password.value) == true) {

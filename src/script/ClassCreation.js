@@ -18,6 +18,10 @@ function generateRandomString(length) {
 
 
 createClass.addEventListener("click", function () {
+    if (className.value == "" || classSectionNumber.value == "" || classRoomNumber.value == "" || classSubject.value == "") {
+        event.preventDefault();
+        return;
+    }
     classesGroup.classList.remove("hidden");
     let classNameValue = className.value;
 
@@ -45,25 +49,25 @@ createClass.addEventListener("click", function () {
             // console.log(classNameValue)
 
             div.classList.add("card", "bg-base-100", "max-w-fit", "shadow-2xl", "p-5", "flex");
-            div.classList.add("flex");
-            img.classList.add("w-24", "rounded-full", "m-5")
-            span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center");
-            span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center")
-            h1.classList.add("card-title", "m-5");
+            div.classList.add("flex", "text-center", "justify-center");
+            img.classList.add("w-24", "rounded-full", "m-5", "self-center")
+            span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
+            span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
+            h1.classList.add("card-title", "m-5", "underline", "cursor-pointer");
 
             console.log(data.results[0].name.first, data.results[0].name.last);
             span.textContent = paragraph.textContent = firstName + " " + lastName
             span2.textContent = classSubject.value;
             h1.textContent = classNameValue + " - " + classSectionNumber.value;
-            paragraph2.innerHTML = classRoomNumber.value;
+            paragraph2.innerHTML = "Room: " + classRoomNumber.value;
 
             img.src = profilePicture;
             classesGroup.append(div);
+            h1.appendChild(span2);
             div.appendChild(h1);
             div.appendChild(div2);
             div.append(div2);
             div2.appendChild(paragraph2);
-            div.appendChild(span2);
             div.appendChild(img);
             div.appendChild(span);
 
