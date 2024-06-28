@@ -121,30 +121,36 @@
             type="text"
             class="grow"
             placeholder="Email"
-            id="user_password"
+            id="user_email"
           />
         </label>
         <br>
-        <label class="input input-bordered input-primary flex items-center gap-2">
+        <label id="user_label" class="input input-bordered input-primary flex items-center gap-2">
           <img src="../assets/user.svg" alt="Username SVG input logo" class="h-4 w-4">
           <input type="text" class="grow" placeholder="Username" id="user_username">
         </label>
         <br>
-        <label class="input input-bordered input-primary flex items-center gap-2">
+        <label id="password_label" class="input input-bordered input-primary flex items-center gap-2">
           <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
-          <input type="password" class="grow" placeholder="Password">
+          <input id="user_password" type="password" class="grow" placeholder="Password">
         </label>
         <br>
-        <label class="input input-bordered input-primary flex items-center gap-2">
+        <label id="password_label_confirm" class="input input-bordered input-primary flex items-center gap-2">
           <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
-          <input type="password" class="grow" placeholder="Confirm Password">
+          <input id="user_password_confirm" type="password" class="grow" placeholder="Confirm Password">
         </label>
-        <button type="button" class="btn btn-primary mt-5" onclick="checkLogin()">
+        
+          <label class="cursor-pointer flex justify-center mt-5">
+              <span class="label-text mr-5 underline self-center">I agree to the terms of service</span>
+            <input type="checkbox" class="checkbox checkbox-primary" />
+          </label>
+        
+        <button type="button" class="btn btn-primary mt-5" onclick="checkSignUp()">
           Login
         </button>
         </div>
       </div>
     </div>
   </body>
-  <script src="./script/script.js"></script>
+  <script src="../script/script.js"></script>
 </html>
