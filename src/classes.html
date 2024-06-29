@@ -166,6 +166,15 @@
             <div class="modal-action">
               <form method="dialog">
                 <button type="button" class="btn btn-ghost">Close</button>
+                <!-- 
+                If someone ever uses a DB for this project or I convert it to a DB, 
+                compare join code to teacher code, if equal create card registering user into class
+                then add their username to the db and use comparisons to check for equality / inequality.
+
+                It's borderline impossible to implement a DB using vanilla HTML && JS and I plan to move to react in 2025
+                so like, if you want you can make a PR for this fix or make an issue about implementing a DB but I don't have the motivation
+                rn lol
+                -->
                 <button type="button" id="class_code" class="btn">Join Class</button>
               </form>
             </div>
@@ -173,8 +182,10 @@
         </dialog>
       </div>
       <button type="button" class="btn btn-ghost shadow-2xl absolute top-0 right-0 hidden" id="exit_class_room">X</button>
-      <div id="container" class="">
+      <div id="container">
         <div class="flex justify-center">
+          <!-- Gives error due to ironic properties but it's important for the ClassCreation.js file, allows creation of classrooms -->
+           <!-- with little issues in regards to it -->
           <div id="classes" class="grid grid-cols-1 gap-10 m-5 hidden sm:grid-cols-2 md:grid-cols-4">
           </div>
         </div>

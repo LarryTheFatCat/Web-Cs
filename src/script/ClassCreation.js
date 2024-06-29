@@ -136,9 +136,6 @@ function renderNewColours() {
             new_color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
             console.log(new_color);
             banner.style.backgroundColor = new_color;
-            // document.body.style = new_color; <-- I spent 2 hours trying to figure out why it was been written to the class
-            // list, turns out it's because of that I'm so mad at myself lmfao
-            
         })
         .catch((error) => {
             console.error(error);
