@@ -148,7 +148,7 @@
             <div class="modal-action">
               <form method="dialog">
                 <button class="btn btn-ghost">Close</button>
-                <button id="create_class" class="btn" >Create Class</button>
+                <button onclick="renderClasses()" id="create_class" class="btn" >Create Class</button>
               </form>
             </div>
           </div>
@@ -172,11 +172,19 @@
           </div>
         </dialog>
       </div>
-      <div class="flex justify-center">
-        <div id="classes" class="grid grid-cols-1 gap-10 m-5 hidden sm:grid-cols-2 md:grid-cols-4">
+      <button type="button" class="btn btn-ghost shadow-2xl absolute top-0 right-0 hidden" id="exit_class_room">X</button>
+      <div id="container" class="">
+        <div class="flex justify-center">
+          <div id="classes" class="grid grid-cols-1 gap-10 m-5 hidden sm:grid-cols-2 md:grid-cols-4">
+          </div>
+        </div>
+        <div id="classroom_wrapper">
+        </div>
+        <div class="w-full h-60" id="banner">
+
         </div>
       </div>
-      <script src="./script/themesaver.js"></script>
+      <script src="./script/LocalStorage.js"></script>
       <script src="./script/ClassCreation.js"></script>
 </body>
 </html>
