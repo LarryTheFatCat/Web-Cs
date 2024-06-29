@@ -10,7 +10,6 @@ const createClass = document.getElementById("create_class");
 const classContainer = document.getElementById("container");
 
 const banner = document.getElementById("banner");
-const classRoomWrapper = document.getElementById("classroom_wrapper");
 const wrapper = document.getElementById("wrapper");
 
 function ClassCodeGenerator(length) {
@@ -66,11 +65,16 @@ function renderClasses() {
             div3.classList.add("tooltip");
             btn.classList.add("btn", "mt-5")
             btn.innerHTML = "Join Class";
+            // btn.onclick = () => {
+            //     return joinClassRoom();
+            // }
             btn2.classList.add("btn", "btn-ghost");
             btn2.innerHTML = "X";
             div3.setAttribute("data-tip", ClassCodeGenerator(5));
             h12.classList.add("text-4xl", "underline", "font-bold", "text-white");
             h13.classList.add("text-4xl", "underline", "font-bold", "text-white");
+            h12.id = firstName
+            h13.id = classSubject.value;
 
             let classCode = div3.getAttribute("data-tip").valueOf();
             paragraph3.textContent = "Class Code " + " - " + classCode;
@@ -84,6 +88,7 @@ function renderClasses() {
 
             btn.addEventListener("click", function () {
                 div.classList.add("hidden");
+                classContainer.classList.add("hidden");
                 exitClassRoom.classList.remove("hidden");
                 banner.classList.remove("hidden");
                 document.title = className.value;
@@ -94,8 +99,14 @@ function renderClasses() {
             exitClassRoom.addEventListener("click", function () {
                 div.classList.remove("hidden");
                 exitClassRoom.classList.add("hidden");
-                banner.classList.add("hidden");                
+                banner.classList.add("hidden");         
+                classContainer.classList.remove("hidden");
+                // for each new classroom rendered, reset onexit
+                h12.textContent = "";
+                h13.textContent = "";
             });
+
+
             img.src = profilePicture;
             classesGroup.append(div);
             div3.appendChild(h1);
