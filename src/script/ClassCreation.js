@@ -8,10 +8,18 @@ const classSubject = document.getElementById("class_class_subject_input");
 const exitClassRoom = document.getElementById("exit_class_room");
 const createClass = document.getElementById("create_class");
 const classContainer = document.getElementById("container");
+const classCreationBtn = document.getElementById("class_creation_join");
+
 
 const banner = document.getElementById("banner");
 const wrapper = document.getElementById("wrapper");
 
+let classroomSize = [] // how many active classrooms the user has
+
+/*
+If DB gets implemented, use function below to render a classCode that get's implemented into the db.
+Perform queries against the db for users who want to join a classroom. 
+*/
 function ClassCodeGenerator(length) {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -20,6 +28,7 @@ function ClassCodeGenerator(length) {
     }
     return result;
 }
+
 
 function renderClasses() {
     if (className.value == "" || classSectionNumber.value == "" || classRoomNumber.value == "" || classSubject.value == "") {
@@ -63,24 +72,19 @@ function renderClasses() {
             span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
             h1.classList.add("card-title", "m-5", "cursor-pointer");
             div3.classList.add("tooltip");
-            btn.classList.add("btn", "mt-5")
+            btn.classList.add("btn")
             btn.innerHTML = "Join Class";
-            // btn.onclick = () => {
-            //     return joinClassRoom();
-            // }
             btn2.classList.add("btn", "btn-ghost");
             btn2.innerHTML = "X";
             div3.setAttribute("data-tip", ClassCodeGenerator(5));
             h12.classList.add("text-4xl", "underline", "font-bold", "text-white");
-            h13.classList.add("text-4xl", "underline", "font-bold", "text-white");
+            h13.classList.add("text-4xl", "underline", "font-bold", "text-white", "mt-5");
             h12.id = firstName
             h13.id = classSubject.value;
 
             let classCode = div3.getAttribute("data-tip").valueOf();
             paragraph3.textContent = "Class Code " + " - " + classCode;
 
-            // console.log(data.results[0].picture.large)
-            // console.log(data.results[0].name.first, data.results[0].name.last);
             span.textContent = paragraph.textContent = firstName + " " + lastName;
             span2.textContent = classSubject.value;
             h1.textContent = classNameValue + " - " + classSectionNumber.value;
@@ -95,12 +99,14 @@ function renderClasses() {
                 h12.textContent = className.value;
                 h13.textContent = firstName + " " + lastName;
                 banner.style.backgroundColor = renderNewColours();
+                classCreationBtn.classList.add("hidden");
             });
             exitClassRoom.addEventListener("click", function () {
                 div.classList.remove("hidden");
                 exitClassRoom.classList.add("hidden");
                 banner.classList.add("hidden");         
                 classContainer.classList.remove("hidden");
+                classCreationBtn.classList.remove("hidden");
                 // for each new classroom rendered, reset onexit
                 h12.textContent = "";
                 h13.textContent = "";
@@ -108,6 +114,7 @@ function renderClasses() {
 
 
             img.src = profilePicture;
+            // hierarchy of classes, top ➡ bottom, highest ➡ lowest
             classesGroup.append(div);
             div3.appendChild(h1);
             h1.appendChild(span2);
@@ -125,7 +132,6 @@ function renderClasses() {
         .catch((error) => {
             console.log(error); // mayhaps
         });
-    //    renderNewColours(); // Debugging: calling function when it randomly stops working in code, just testing to make sure the JSON isn't broken
 }
 
 // returns a randomized coloured background for teacher's banner :D
@@ -139,9 +145,7 @@ function renderNewColours() {
         })
         .then((data) => {
             colorsArray = [];
-            // console.log(data[0].colors[0])
             for (let i = 0; i < data.length; i++) {
-                // console.log(data[i].colors[0])
                 colorsArray.push(data[i].colors[0])
             }
             new_color = colorsArray[Math.floor(Math.random() * colorsArray.length)];

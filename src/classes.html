@@ -102,7 +102,7 @@
           </div>
         </div>
       </nav>
-      <div class="absolute bottom-3 right-3">
+      <div id="class_creation_join" class="absolute bottom-3 right-3">
         <div class="dropdown dropdown-top dropdown-left">
           <button type="button" class="btn btn-circle z-30">
             <img src="./assets/creation.svg" alt="SVG plus icon for creating classrooms" class="w-4 h-4">
@@ -181,16 +181,16 @@
           </div>
         </dialog>
       </div>
-      <button type="button" class="btn btn-ghost shadow-2xl absolute top-0 right-0 hidden" id="exit_class_room">X</button>
       <div id="container">
         <div class="flex justify-center">
           <!-- Gives error due to ironic properties but it's important for the ClassCreation.js file, allows creation of classrooms -->
-           <!-- with little issues in regards to it -->
+          <!-- with little issues in regards to it -->
           <div id="classes" class="grid grid-cols-1 gap-10 m-5 hidden sm:grid-cols-2 md:grid-cols-4">
           </div>
         </div>
       </div>
-      <div class="w-full h-60" id="banner">
+      <div class="w-full h-60 text-center pt-14" id="banner">
+        <button type="button" class="btn shadow-2xl absolute top-20 right-0 hidden" id="exit_class_room">X</button>
       </div>
       <script src="./script/LocalStorage.js"></script>
       <script src="./script/ClassCreation.js"></script>
