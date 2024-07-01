@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # Tailwind CSS output.css
 output.css
+
+# Desktop Service Store
+.DS_Store

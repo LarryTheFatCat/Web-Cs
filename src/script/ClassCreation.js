@@ -9,11 +9,13 @@ const exitClassRoom = document.getElementById("exit_class_room");
 const createClass = document.getElementById("create_class");
 const classContainer = document.getElementById("container");
 const classCreationBtn = document.getElementById("class_creation_join");
+const classroomBody = document.getElementById("classroom_body");
 
 const banner = document.getElementById("banner");
 const wrapper = document.getElementById("wrapper");
 
-const classroomBody = document.getElementById("classroom_body");
+const classroomBodyCode = document.getElementById("classroom_body_code");
+const classroomBodyCodeDialog = document.getElementById("classroom_body_code_dialog");
 const classCode = document.querySelectorAll("#class_code");
 
 /*
@@ -70,7 +72,7 @@ function renderClasses() {
             img.classList.add("w-24", "rounded-full", "m-5", "self-center")
             span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
             span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
-            h1.classList.add("card-title", "m-5", "cursor-pointer");  
+            h1.classList.add("card-title", "m-5", "cursor-pointer");
             btn.classList.add("btn")
             btn.innerHTML = "Join Class";
             btn2.classList.add("btn", "btn-ghost");
@@ -100,11 +102,15 @@ function renderClasses() {
                 banner.style.backgroundColor = renderNewColours();
                 classCreationBtn.classList.add("hidden");
                 classroomBody.classList.remove("hidden");
+
+                // obtain randomly generated value to render over classCodeBody
+                classroomBodyCode.textContent = `Class Code: ${classCode}`;
+                classroomBodyCodeDialog.textContent = `Class Code: ${classCode}`;
             });
             exitClassRoom.addEventListener("click", function () {
                 div.classList.remove("hidden");
                 exitClassRoom.classList.add("hidden");
-                banner.classList.add("hidden");         
+                banner.classList.add("hidden");
                 classContainer.classList.remove("hidden");
                 classCreationBtn.classList.remove("hidden");
                 classroomBody.classList.add("hidden");
