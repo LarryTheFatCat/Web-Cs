@@ -15,7 +15,6 @@ function checkLogin() {
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
 
     if (regexUsername.test(username.value) == true && regexPassword.test(password.value) == true) {
-        // @todo: transition to main webpage showing classrooms && implement admin feature soon™
         usernameLabel.classList.remove('input-error');
         usernameLabel.classList.add('input-primary');
 
@@ -55,7 +54,6 @@ function checkSignUp() {
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!regexUsername.test(username.value) && regexPassword.test(password.value) == true) {
-        // @todo: transition to main webpage showing classrooms && implement admin feature soon™
         usernameLabel.classList.remove('input-error');
         usernameLabel.classList.add('input-primary');
 

@@ -10,11 +10,11 @@ const createClass = document.getElementById("create_class");
 const classContainer = document.getElementById("container");
 const classCreationBtn = document.getElementById("class_creation_join");
 
-
 const banner = document.getElementById("banner");
 const wrapper = document.getElementById("wrapper");
 
-let classroomSize = [] // how many active classrooms the user has
+const classroomBody = document.getElementById("classroom_body");
+const classCode = document.querySelectorAll("#class_code");
 
 /*
 If DB gets implemented, use function below to render a classCode that get's implemented into the db.
@@ -54,7 +54,7 @@ function renderClasses() {
             let span2 = document.createElement("span"); // badge #2, subject name
             let div2 = document.createElement("div"); // card-body
             let paragraph2 = document.createElement("p"); // room number
-            let div3 = document.createElement("div"); // tooltip
+            let div3 = document.createElement("div"); // Class code (Can't remember why I set it as a tooltip lol)
             let paragraph3 = document.createElement("p"); // class code
             let btn = document.createElement("btn"); // classroom join button
             let btn2 = document.createElement("btn"); // join class
@@ -70,8 +70,7 @@ function renderClasses() {
             img.classList.add("w-24", "rounded-full", "m-5", "self-center")
             span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
             span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
-            h1.classList.add("card-title", "m-5", "cursor-pointer");
-            div3.classList.add("tooltip");
+            h1.classList.add("card-title", "m-5", "cursor-pointer");  
             btn.classList.add("btn")
             btn.innerHTML = "Join Class";
             btn2.classList.add("btn", "btn-ghost");
@@ -100,6 +99,7 @@ function renderClasses() {
                 h13.textContent = firstName + " " + lastName;
                 banner.style.backgroundColor = renderNewColours();
                 classCreationBtn.classList.add("hidden");
+                classroomBody.classList.remove("hidden");
             });
             exitClassRoom.addEventListener("click", function () {
                 div.classList.remove("hidden");
@@ -107,6 +107,7 @@ function renderClasses() {
                 banner.classList.add("hidden");         
                 classContainer.classList.remove("hidden");
                 classCreationBtn.classList.remove("hidden");
+                classroomBody.classList.add("hidden");
                 // for each new classroom rendered, reset onexit
                 h12.textContent = "";
                 h13.textContent = "";
@@ -155,4 +156,8 @@ function renderNewColours() {
         .catch((error) => {
             console.error(error);
         })
+}
+
+function postAnnouncement() {
+    // do something
 }

@@ -181,17 +181,58 @@
           </div>
         </dialog>
       </div>
+      <!-- ========== Start CLASSROOM SECTION ========== -->
       <div id="container">
         <div class="flex justify-center">
           <!-- Gives error due to ironic properties but it's important for the ClassCreation.js file, allows creation of classrooms -->
           <!-- with little issues in regards to it -->
           <div id="classes" class="grid grid-cols-1 gap-10 m-5 hidden sm:grid-cols-2 md:grid-cols-4">
+            <!-- ClassCreation.js -->
           </div>
         </div>
       </div>
       <div class="w-full h-60 text-center pt-14" id="banner">
         <button type="button" class="btn shadow-2xl absolute top-20 right-0 hidden" id="exit_class_room">X</button>
       </div>
+      <!-- again, just ignore it, the hidden allows for toggling purposes -->
+      <div id="classroom_body" class="grid hidden text-center p-0 sm:p-5 grid-cols-1 sm:grid-cols-3">
+        <div class="card max-w-xs sm:max-w-96 bg-base-100 drop-shadow-2xl">
+          <div class="card-body">
+            <h2 class="text-2xl font-bold text-center underline underline-offset-2" id="class_code">
+              Nothing So Far :c
+            </h2>
+          </div>
+          <div class="card-footer self-end">
+            <!-- Open the modal using ID.showModal() method -->
+            <button class="btn btn-ghost" onclick="show_class_code.showModal()">
+              <img src="./assets/full_screen.svg" alt="full screen svg for class code" class="w-8 h-8">
+            </button>
+            <dialog id="show_class_code" class="modal modal-bottom sm:modal-middle">
+              <form method="dialog" class="modal-box">
+                <h2 class="card-title" id="class_code"></h2>
+                <div class="modal-action">
+                  <button class="btn">Close</button>
+                </div>
+              </form>
+            </dialog>
+          </div>
+        </div>
+        <div class="col-span-1 sm:col-span-2 py-5">
+          <div class="card max-w-full bg-base-100 shadow-xl">
+            <div class="card-body">
+              <div class="sm:join sm:join-horizontal">
+                <label class="input input-bordered w-full flex join-item items-center gap-4 cursor-pointer">
+                  <img src="./assets/announcement.svg" alt="Announcement input svg icon" class="w-8 h-8">
+                  <input type="text" class="grow cursor-pointer" placeholder="Enter Announcement">
+                </label>
+                <button class="btn btn-primary w-full sm:w-20 sm:rounded-r-full" onclick="postAnnouncement()">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== End CLASSROOM SECTION ========== -->
+      
       <script src="./script/LocalStorage.js"></script>
       <script src="./script/ClassCreation.js"></script>
 </body>
