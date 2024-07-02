@@ -18,6 +18,10 @@ const classroomBodyCode = document.getElementById("classroom_body_code");
 const classroomBodyCodeDialog = document.getElementById("classroom_body_code_dialog");
 const classCode = document.querySelectorAll("#class_code");
 
+const cardWrapper = document.getElementById("card-wrapper");
+const inputPoster = document.getElementById("input_poster");
+
+const assignmentsCard = document.getElementById("assignments_card");
 /*
 If DB gets implemented, use function below to render a classCode that get's implemented into the db.
 Perform queries against the db for users who want to join a classroom. 
@@ -106,6 +110,11 @@ function renderClasses() {
                 // obtain randomly generated value to render over classCodeBody
                 classroomBodyCode.textContent = `Class Code: ${classCode}`;
                 classroomBodyCodeDialog.textContent = `Class Code: ${classCode}`;
+
+                // render Assignments Section
+                assignmentsCard.classList.remove("hidden");
+                cardWrapper.classList.remove("hidden");
+
             });
             exitClassRoom.addEventListener("click", function () {
                 div.classList.remove("hidden");
@@ -117,6 +126,9 @@ function renderClasses() {
                 // for each new classroom rendered, reset onexit
                 h12.textContent = "";
                 h13.textContent = "";
+                // Hide Assignments Section
+                assignmentsCard.classList.add("hidden");
+                cardWrapper.classList.add("hidden");
             });
 
 
@@ -165,5 +177,35 @@ function renderNewColours() {
 }
 
 function postAnnouncement() {
-    // do something
+    let card = document.createElement("div");
+    let avatarPlaceHolder = document.createElement("div");
+    let avatarStyling = document.createElement("div");
+    let idAvatarProfile = document.createElement("span");
+    let idAvatarName = document.createElement("span");
+    let contentWrapper = document.createElement("div");
+    let content = document.createElement("p");
+
+    content.id = "text_content"
+
+    if (inputPoster.value <= 0) {
+        window.preventDefault();
+    }
+    card.classList.add("card", "col-span-2", "max-w-full", "p-5", "self-center", "bg-base-100", "drop-shadow-2xl", "border-black");
+    cardWrapper.append(card);
+    avatarPlaceHolder.classList.add("avatar", "placeholder");
+    card.appendChild(avatarPlaceHolder);
+    avatarStyling.classList.add("bg-base-300", "w-10", "rounded-full");
+    avatarPlaceHolder.appendChild(avatarStyling);
+    idAvatarProfile.classList.add("text-2xl");
+    avatarStyling.appendChild(idAvatarProfile);
+    idAvatarProfile.textContent = sessionStorage.getItem("name").charAt(0);
+    idAvatarName.classList.add("self-center", "ml-2", "underline", "underline-offset-2", "font-bold");
+    avatarPlaceHolder.appendChild(idAvatarName);
+    idAvatarName.textContent = sessionStorage.getItem("name");
+    contentWrapper.classList.add("p-5")
+    card.appendChild(contentWrapper);
+    content.textContent = inputPoster.value;
+    contentWrapper.appendChild(content);
+
 }
+

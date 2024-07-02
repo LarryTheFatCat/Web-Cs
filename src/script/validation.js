@@ -9,6 +9,7 @@ const emailLabel = document.getElementById("email_label");
 
 const userPasswordConfirm = document.getElementById("user_password_confirm");
 const userPasswordConfirmLabel = document.getElementById("password_label_confirm");
+const name = document.getElementById("user_name");
 
 function checkLogin() {
     let regexUsername = /^[0-9]+$/;
@@ -35,6 +36,7 @@ function checkLogin() {
         passwordLabel.classList.remove("input-error");
         passwordLabel.classList.add("input-primary");
         toolTip.classList.add("hidden");
+        sessionStorage.setItem("username", username.value);
         return location.href = "/src/classes.html";
     }
 }
@@ -75,6 +77,7 @@ function checkSignUp() {
 
         emailLabel.classList.remove("input-error")
         emailLabel.classList.add("input-primary");
+        sessionStorage.setItem("name", name.value);
         return location.href = "/src/classes.html"
     }
 }
