@@ -41,6 +41,7 @@ function renderClasses() {
         event.preventDefault();
         return;
     }
+
     classesGroup.classList.remove("hidden");
     let classNameValue = className.value;
 
@@ -147,6 +148,7 @@ function renderClasses() {
             div.appendChild(paragraph3);
             banner.appendChild(h12);
             banner.appendChild(h13);
+
         })
         .catch((error) => {
             console.log(error); // mayhaps
@@ -198,14 +200,13 @@ function postAnnouncement() {
     avatarPlaceHolder.appendChild(avatarStyling);
     idAvatarProfile.classList.add("text-2xl");
     avatarStyling.appendChild(idAvatarProfile);
-    idAvatarProfile.textContent = sessionStorage.getItem("name").charAt(0);
+    idAvatarProfile.textContent = sessionStorage.getItem("username").charAt(0);;
     idAvatarName.classList.add("self-center", "ml-2", "underline", "underline-offset-2", "font-bold");
     avatarPlaceHolder.appendChild(idAvatarName);
-    idAvatarName.textContent = sessionStorage.getItem("name");
+    idAvatarName.textContent = sessionStorage.getItem("username");
     contentWrapper.classList.add("p-5")
     card.appendChild(contentWrapper);
     content.textContent = inputPoster.value;
     contentWrapper.appendChild(content);
-
 }
 
