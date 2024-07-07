@@ -78,7 +78,7 @@ function checkSignUp() {
         emailLabel.classList.remove("input-error")
         emailLabel.classList.add("input-primary");
         sessionStorage.setItem("name", name.value);
-        return location.href = "/src/classes.html"
+        return location.href = "/src/sub-pages/login.html"
     }
 }
 

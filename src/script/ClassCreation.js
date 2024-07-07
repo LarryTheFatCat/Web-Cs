@@ -20,6 +20,8 @@ const classCode = document.querySelectorAll("#class_code");
 
 const cardWrapper = document.getElementById("card-wrapper");
 const inputPoster = document.getElementById("input_poster");
+const inputPosterLabel = document.getElementById("input_poster_label");
+const announcementError = document.getElementById("announcement_erorr");
 
 const assignmentsCard = document.getElementById("assignments_card");
 /*
@@ -190,7 +192,14 @@ function postAnnouncement() {
     content.id = "text_content"
 
     if (inputPoster.value <= 0) {
-        window.preventDefault();
+        event.preventDefault();
+
+        inputPosterLabel.classList.add("input-error");
+        announcementError.classList.remove("hidden");
+        return;
+    } else {
+        inputPosterLabel.classList.remove("input-error");
+        announcementError.classList.add("hidden");
     }
     card.classList.add("card", "col-span-2", "max-w-full", "p-5", "self-center", "bg-base-100", "drop-shadow-2xl", "border-black");
     cardWrapper.append(card);
@@ -200,7 +209,7 @@ function postAnnouncement() {
     avatarPlaceHolder.appendChild(avatarStyling);
     idAvatarProfile.classList.add("text-2xl");
     avatarStyling.appendChild(idAvatarProfile);
-    idAvatarProfile.textContent = sessionStorage.getItem("username").charAt(0);;
+    idAvatarProfile.textContent = sessionStorage.getItem("username").charAt(0);
     idAvatarName.classList.add("self-center", "ml-2", "underline", "underline-offset-2", "font-bold");
     avatarPlaceHolder.appendChild(idAvatarName);
     idAvatarName.textContent = sessionStorage.getItem("username");

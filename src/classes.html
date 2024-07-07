@@ -223,11 +223,14 @@
             <div class="card max-w-full bg-base-100 drop-shadow-2xl">
               <div class="card-body">
                 <div class="sm:join sm:join-horizontal">
-                  <label class="input input-bordered w-full flex join-item items-center gap-4 cursor-pointer">
-                    <img src="./assets/announcement.svg" alt="Announcement input svg icon" class="w-8 h-8">
-                    <input type="text" id="input_poster" class="grow cursor-pointer" placeholder="Enter Announcement">
-                  </label>
-                  <button id="btn_post" class="btn btn-primary w-full sm:w-20 sm:rounded-r-full" onclick="postAnnouncement()">Post</button>
+                    <label id="input_poster_label" class="input input-bordered w-full flex join-item items-center gap-4 cursor-pointer">
+                      <img src="./assets/announcement.svg" alt="Announcement input svg icon" class="w-8 h-8">
+                      <input type="text" id="input_poster" class="grow cursor-pointer" placeholder="Enter Announcement">
+                    </label>
+                    <button id="btn_post" class="btn btn-primary w-full sm:w-20 sm:rounded-r-full" onclick="postAnnouncement()">Post</button>
+                </div>
+                <div class="label">
+                  <span class="label-text text-red-500 hidden" id="announcement_erorr">Whoops Make sure to enter an announcement!</span>
                 </div>
               </div>
             </div>
