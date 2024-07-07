@@ -15,7 +15,6 @@ function checkLogin() {
     let regexUsername = /^[0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     // if any are wrong, return whole thing as wrong
-    // else, redirect to classes
     if (!regexUsername.test(username.value)) {
         usernameLabel.classList.remove("input-primary");
         usernameLabel.classList.add("input-error");
@@ -69,6 +68,9 @@ function checkSignUp() {
         emailLabel.classList.add("input-error");
         return;
     } else {
+        /**
+         * On success, just redirect to login for "security purposes"... lol
+         */
         usernameLabel.classList.remove("input-error");
         usernameLabel.classList.add("input-primary");
 

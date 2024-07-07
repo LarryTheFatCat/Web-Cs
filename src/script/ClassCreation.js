@@ -23,11 +23,17 @@ const inputPoster = document.getElementById("input_poster");
 const inputPosterLabel = document.getElementById("input_poster_label");
 const announcementError = document.getElementById("announcement_erorr");
 
+const classroomEmptyMessage = document.getElementById("classroom_empty_message");
+
 const assignmentsCard = document.getElementById("assignments_card");
-/*
-If DB gets implemented, use function below to render a classCode that get's implemented into the db.
-Perform queries against the db for users who want to join a classroom. 
-*/
+
+const api = "https://randomuser.me/api/"
+
+/**
+ * 
+ * @param   {number} length    - Specified length of randomly generated string of numbers
+ * @returns          randomly generated list of numbers and characters at a desired length
+ */
 function ClassCodeGenerator(length) {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -37,17 +43,17 @@ function ClassCodeGenerator(length) {
     return result;
 }
 
-
+/**
+ * Simple API caller function to get information about a "teacher"
+ * @returns     API call of teacher with information that is used by generateClassroom() function.
+ */
 function renderClasses() {
     if (className.value == "" || classSectionNumber.value == "" || classRoomNumber.value == "" || classSubject.value == "") {
         event.preventDefault();
         return;
     }
 
-    classesGroup.classList.remove("hidden");
-    let classNameValue = className.value;
-
-    fetch("https://randomuser.me/api/")
+    fetch(api)
         .then((response) => {
             if (!response.ok) {
                 console.error("API Status NOT OK.", ErrorEvent);
@@ -55,106 +61,120 @@ function renderClasses() {
             return response.json();
         })
         .then((data) => {
-            let paragraph = document.createElement("p"); // name
-            let span = document.createElement("span"); // badge contents
-            let img = document.createElement("img"); // avatar
-            let div = document.createElement("div"); // card 
-            let h1 = document.createElement("h1"); // Subject name
-            let span2 = document.createElement("span"); // badge #2, subject name
-            let div2 = document.createElement("div"); // card-body
-            let paragraph2 = document.createElement("p"); // room number
-            let div3 = document.createElement("div"); // Class code (Can't remember why I set it as a tooltip lol)
-            let paragraph3 = document.createElement("p"); // class code
-            let btn = document.createElement("btn"); // classroom join button
-            let btn2 = document.createElement("btn"); // join class
-            let h12 = document.createElement("h1"); // renders className.value as large text over background in join class section
-            let h13 = document.createElement("h1"); // renders the teacher name value over large text below the join class section
-
-            let firstName = data.results[0].name.first;
-            let lastName = data.results[0].name.last;
-            let profilePicture = data.results[0].picture.large;
-
-            div.classList.add("card", "bg-base-100", "max-w-fit", "shadow-2xl", "p-5", "flex");
-            div.classList.add("flex", "text-center", "justify-center");
-            img.classList.add("w-24", "rounded-full", "m-5", "self-center")
-            span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
-            span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
-            h1.classList.add("card-title", "m-5", "cursor-pointer");
-            btn.classList.add("btn")
-            btn.innerHTML = "Join Class";
-            btn2.classList.add("btn", "btn-ghost");
-            btn2.innerHTML = "X";
-            div3.setAttribute("data-tip", ClassCodeGenerator(5));
-            h12.classList.add("text-4xl", "underline", "font-bold", "text-white");
-            h13.classList.add("text-4xl", "underline", "font-bold", "text-white", "mt-5");
-            h12.id = firstName
-            h13.id = classSubject.value;
-
-            let classCode = div3.getAttribute("data-tip").valueOf();
-            paragraph3.textContent = "Class Code " + " - " + classCode;
-
-            span.textContent = paragraph.textContent = firstName + " " + lastName;
-            span2.textContent = classSubject.value;
-            h1.textContent = classNameValue + " - " + classSectionNumber.value;
-            paragraph2.innerHTML = "Room: " + classRoomNumber.value;
-
-            btn.addEventListener("click", function () {
-                div.classList.add("hidden");
-                classContainer.classList.add("hidden");
-                exitClassRoom.classList.remove("hidden");
-                banner.classList.remove("hidden");
-                document.title = className.value;
-                h12.textContent = className.value;
-                h13.textContent = firstName + " " + lastName;
-                banner.style.backgroundColor = renderNewColours();
-                classCreationBtn.classList.add("hidden");
-                classroomBody.classList.remove("hidden");
-
-                // obtain randomly generated value to render over classCodeBody
-                classroomBodyCode.textContent = `Class Code: ${classCode}`;
-                classroomBodyCodeDialog.textContent = `Class Code: ${classCode}`;
-
-                // render Assignments Section
-                assignmentsCard.classList.remove("hidden");
-                cardWrapper.classList.remove("hidden");
-
-            });
-            exitClassRoom.addEventListener("click", function () {
-                div.classList.remove("hidden");
-                exitClassRoom.classList.add("hidden");
-                banner.classList.add("hidden");
-                classContainer.classList.remove("hidden");
-                classCreationBtn.classList.remove("hidden");
-                classroomBody.classList.add("hidden");
-                // for each new classroom rendered, reset onexit
-                h12.textContent = "";
-                h13.textContent = "";
-                // Hide Assignments Section
-                assignmentsCard.classList.add("hidden");
-                cardWrapper.classList.add("hidden");
-            });
-
-
-            img.src = profilePicture;
-            // hierarchy of classes, top ➡ bottom, highest ➡ lowest
-            classesGroup.append(div);
-            div3.appendChild(h1);
-            h1.appendChild(span2);
-            div.appendChild(h1);
-            div.appendChild(div2);
-            div.append(div2);
-            div2.appendChild(paragraph2);
-            div.appendChild(img);
-            div.appendChild(btn);;
-            div.appendChild(span);
-            div.appendChild(paragraph3);
-            banner.appendChild(h12);
-            banner.appendChild(h13);
-
+            generateClassroom(data);
         })
         .catch((error) => {
             console.log(error); // mayhaps
         });
+}
+
+
+/**
+ * Function that generates the styling components for the actual classroom
+ * @param   {Object} data - Generated information about a user from an API call
+ * @returns          card with teacher name, profile picture, classroom (from user), type of class (from user) and a button
+ */
+function generateClassroom(data) {
+    classesGroup.classList.remove("hidden");
+    let classNameValue = className.value;
+
+    let paragraph = document.createElement("p"); // name
+    let span = document.createElement("span"); // badge contents
+    let img = document.createElement("img"); // avatar
+    let div = document.createElement("div"); // card 
+    let h1 = document.createElement("h1"); // Subject name
+    let span2 = document.createElement("span"); // badge #2, subject name
+    let div2 = document.createElement("div"); // card-body
+    let paragraph2 = document.createElement("p"); // room number
+    let div3 = document.createElement("div"); // Class code (Can't remember why I set it as a tooltip lol)
+    let paragraph3 = document.createElement("p"); // class code
+    let btn = document.createElement("btn"); // classroom join button
+    let btn2 = document.createElement("btn"); // join class
+    let h12 = document.createElement("h1"); // renders className.value as large text over background in join class section
+    let h13 = document.createElement("h1"); // renders the teacher name value over large text below the join class section
+
+    let firstName = data.results[0].name.first;
+    let lastName = data.results[0].name.last;
+    let profilePicture = data.results[0].picture.large;
+
+    div.classList.add("card", "bg-base-100", "max-w-fit", "shadow-2xl", "p-5", "flex");
+    div.classList.add("flex", "text-center", "justify-center");
+    img.classList.add("w-24", "rounded-full", "m-5", "self-center")
+    span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
+    span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
+    h1.classList.add("card-title", "m-5", "cursor-pointer");
+    btn.classList.add("btn")
+    btn.innerHTML = "Join Class";
+    btn2.classList.add("btn", "btn-ghost");
+    btn2.innerHTML = "X";
+    div3.setAttribute("data-tip", ClassCodeGenerator(5));
+    h12.classList.add("text-4xl", "underline", "font-bold", "text-white");
+    h13.classList.add("text-4xl", "underline", "font-bold", "text-white", "mt-5");
+    h12.id = firstName
+    h13.id = classSubject.value;
+
+    let classCode = div3.getAttribute("data-tip").valueOf();
+    paragraph3.textContent = "Class Code " + " - " + classCode;
+
+    span.textContent = paragraph.textContent = firstName + " " + lastName;
+    span2.textContent = classSubject.value;
+    h1.textContent = classNameValue + " - " + classSectionNumber.value;
+    paragraph2.innerHTML = "Room: " + classRoomNumber.value;
+
+    btn.addEventListener("click", function () {
+        div.classList.add("hidden");
+        classContainer.classList.add("hidden");
+        exitClassRoom.classList.remove("hidden");
+        banner.classList.remove("hidden");
+        document.title = className.value;
+        h12.textContent = className.value;
+        h13.textContent = firstName + " " + lastName;
+        banner.style.backgroundColor = renderNewColours();
+        classCreationBtn.classList.add("hidden");
+        classroomBody.classList.remove("hidden");
+        classroomEmptyMessage.classList.add("hidden");
+
+
+        // obtain randomly generated value to render over classCodeBody
+        classroomBodyCode.textContent = `Class Code: ${classCode}`;
+        classroomBodyCodeDialog.textContent = `Class Code: ${classCode}`;
+
+        // render Assignments Section
+        assignmentsCard.classList.remove("hidden");
+        cardWrapper.classList.remove("hidden");
+
+    });
+    exitClassRoom.addEventListener("click", function () {
+        div.classList.remove("hidden");
+        exitClassRoom.classList.add("hidden");
+        banner.classList.add("hidden");
+        classContainer.classList.remove("hidden");
+        classCreationBtn.classList.remove("hidden");
+        classroomBody.classList.add("hidden");
+        // for each new classroom rendered, reset onexit
+        h12.textContent = "";
+        h13.textContent = "";
+        // Hide Assignments Section
+        assignmentsCard.classList.add("hidden");
+        cardWrapper.classList.add("hidden");
+    });
+
+
+    img.src = profilePicture;
+    // hierarchy of classes, top ➡ bottom, highest ➡ lowest
+    classesGroup.append(div);
+    div3.appendChild(h1);
+    h1.appendChild(span2);
+    div.appendChild(h1);
+    div.appendChild(div2);
+    div.append(div2);
+    div2.appendChild(paragraph2);
+    div.appendChild(img);
+    div.appendChild(btn);;
+    div.appendChild(span);
+    div.appendChild(paragraph3);
+    banner.appendChild(h12);
+    banner.appendChild(h13);
 }
 
 // returns a randomized coloured background for teacher's banner :D
