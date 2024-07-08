@@ -100,6 +100,9 @@
           </div>
         </div>
       </nav>
+      <a href="../classes.html">
+        <button class="btn btn-ghost underline underline-offset-2" onclick="window.close()">Go Back To Classroom</button>
+      </a>
       <div class="card flex max-w-full p-10 my-10 sm:max-w-screen-sm mx-auto bg-base-100 drop-shadow-2xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 text-center">
           <div class="grid col-span-1">
@@ -134,7 +137,7 @@
                     </div>
                     <textarea id="textarea_description" class="textarea textarea-primary" placeholder="Title of assigment (Optional 😊)"></textarea>
                   </label>
-                  <div class="divider font-bold text-lg">Attatch Files</div>
+                  <div class="divider font-bold text-lg uppercase">Attatch Files</div>
                   <div class="grid grid-cols-3 gap-y-2">
                     <input type="file" class="file-input col-span-full sm:col-span-2 file-input-bordered w-full max-w-full" />
                     <div class="dropdown dropdown-top col-span-full sm:col-span-1">
@@ -168,11 +171,24 @@
                       </li>
                       </ul>
                     </div>
-                    <div class="tooltip tooltip-right" data-tip="The autograder checkbox simply acts as a way to check for 2 specific things, the full name in the actual file, as well if the assignment has been submitted before the due date or not. This makes it easier for teachers to check to see who has actually submitted it on time verses someone who has submitted it after the due date and should have their marks deducted.">
-                      <label class="cursor-pointer label">
-                        <span class="label-text">Autograde</span>
-                        <input id="checkbox_autograder" type="checkbox" checked="checked" onclick="autoGrader()" class="checkbox checkbox-info">
-                      </label>
+                  </div>
+                  <div class="divider font-bold text-lg">
+                    <p class="uppercase">
+                      information
+                    </p>
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-2">
+                    <div class="grid col-span-1">
+                      <input id="due_date" type="datetime-local" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" />
+                    </div>
+                    <div class="grid col-span-1">
+                      <input type="number" placeholder="# of Points" class="input input-bordered input-primary w-full max-w-xs" />
+                    </div>
+                    <div class="grid col-span-1 text-center">
+                        <label class="cursor-pointer label">
+                          <span class="label-text">Lock After Req. Date:</span>
+                          <input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
+                        </label>
                     </div>
                   </div>
                 </div>
@@ -184,10 +200,17 @@
             </dialog>
           </div>
         </div>
-        <div class="card-body join join-horizontal" id="assignment_contents">
+        <div class="card-body" id="assignment_contents">
+          <!-- <div class="card bg-base-100 transition drop-shadow-2xl max-w-full sm:w-full p-5 border-l-gray-900 border-l-4 hover:cursor-pointer hover:bg-base-300">
+            <p class="card-title text-lg">
+              <img src="../assets/assignmentCardIcon.svg" class="w-10 h-10 bg-blue-700 p-2 rounded-full" alt="">
+              <span class="overflow-hidden">
+                fjdskafjdskl;afjdsklj
+              </span>
+            </p>
+          </div> -->
         </div>
       </div>
-      <script src="../script/Grading.js"></script>
       <script src="../script/PostAssignments.js"></script>
       <script src="../script/LocalStorage.js"></script>
       <script src="../script/validation.js"></script>
