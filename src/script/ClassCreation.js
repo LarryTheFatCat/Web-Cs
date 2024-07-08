@@ -75,7 +75,7 @@ function renderClasses() {
  * @returns          card with teacher name, profile picture, classroom (from user), type of class (from user) and a button
  */
 function generateClassroom(data) {
-    classroomEmptyMessage.classList.add("hidden"); // Toggles
+    classroomEmptyMessage.classList.add("hidden"); 
     classesGroup.classList.remove("hidden");
     let classNameValue = className.value;
 
@@ -156,7 +156,7 @@ function generateClassroom(data) {
         // Hide Assignments Section
         assignmentsCard.classList.add("hidden");
         cardWrapper.classList.add("hidden");
-        classroomEmptyMessage.classList.remove("hidden"); // Toggles message to create classroom
+        classroomEmptyMessage.classList.remove("hidden"); 
     });
 
 
