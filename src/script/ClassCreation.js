@@ -75,6 +75,7 @@ function renderClasses() {
  * @returns          card with teacher name, profile picture, classroom (from user), type of class (from user) and a button
  */
 function generateClassroom(data) {
+    classroomEmptyMessage.classList.add("hidden"); // Toggles
     classesGroup.classList.remove("hidden");
     let classNameValue = className.value;
 
@@ -97,8 +98,7 @@ function generateClassroom(data) {
     let lastName = data.results[0].name.last;
     let profilePicture = data.results[0].picture.large;
 
-    div.classList.add("card", "bg-base-100", "max-w-fit", "shadow-2xl", "p-5", "flex");
-    div.classList.add("flex", "text-center", "justify-center");
+    div.classList.add("card", "bg-base-100", "max-w-fit", "shadow-2xl", "p-5", "flex", "text-center", "justify-center", "z-[-2]");
     img.classList.add("w-24", "rounded-full", "m-5", "self-center")
     span.classList.add("badge", "badge-primary", "font-bold", "text-white", "max-w-full", "text-[9px]", "self-center", "align-middle");
     span2.classList.add("badge", "badge-secondary", "max-w-full", "self-center", "place-self-center")
@@ -132,7 +132,6 @@ function generateClassroom(data) {
         banner.style.backgroundColor = renderNewColours();
         classCreationBtn.classList.add("hidden");
         classroomBody.classList.remove("hidden");
-        classroomEmptyMessage.classList.add("hidden");
 
 
         // obtain randomly generated value to render over classCodeBody
@@ -157,6 +156,7 @@ function generateClassroom(data) {
         // Hide Assignments Section
         assignmentsCard.classList.add("hidden");
         cardWrapper.classList.add("hidden");
+        classroomEmptyMessage.classList.remove("hidden"); // Toggles message to create classroom
     });
 
 
