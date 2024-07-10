@@ -103,106 +103,112 @@
       <a href="../classes.html">
         <button class="btn btn-ghost underline underline-offset-2" onclick="window.close()">Go Back To Classroom</button>
       </a>
-      <div class="card flex max-w-full p-10 my-10 sm:max-w-screen-sm mx-auto bg-base-100 drop-shadow-2xl">
-        <div class="grid grid-cols-1 sm:grid-cols-2 text-center">
-          <div class="grid col-span-1">
-            <h1 class="text-3xl self-center underline underline-offset-2">
-              Assignments
-            </h1>
-          </div>
-          <div class="grid col-span-1 p-5 sm:p-0">
-            <button onclick="create_assignments_modal.showModal()" class="btn btn-primary">
-              <img src="../assets/add_plus.svg" alt="" class="w-4 h-4">
-              Create Assignment
-            </button>
-            <dialog id="create_assignments_modal" class="modal modal-bottom sm:modal-middle">
-              <form method="dialog" class="modal-box">
-                <h1 class="text-2xl font-bold underline underline-offset-2">
-                  Assignment Name: <span id="assignment_name"></span> <!-- PostAssignment.js -->
-                </h1>
-                <div>
-                  <label class="form-control">
-                    <div class="label">
-                      <span class="label-text">
-                        Enter Title
-                      </span>
-                    </div>
-                    <textarea id="textarea_title" class="textarea textarea-primary" placeholder="Enter Content"></textarea>
-                  </label>
-                  <label class="form-control">
-                    <div class="label">
-                      <span class="label-text">
-                        Enter Description
-                      </span>
-                    </div>
-                    <textarea id="textarea_description" class="textarea textarea-primary" placeholder="Title of assigment (Optional 😊)"></textarea>
-                  </label>
-                  <div class="divider font-bold text-lg uppercase">Attatch Files</div>
-                  <div class="grid grid-cols-3 gap-y-2">
-                    <input type="file" class="file-input col-span-full sm:col-span-2 file-input-bordered w-full max-w-full" />
-                    <div class="dropdown dropdown-top col-span-full sm:col-span-1">
-                      <label tabindex="0" class="btn m-1">
-                        <img src="../assets/add_plus.svg" class="w-4 h-4" alt="">
-                      </label>
-                      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                          <a href="https://docs.google.com/document/create">
-                            <img src="../assets/google-docs.svg" class="w-4 h-4" alt="">
-                            Google Docs
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://docs.google.com/spreadsheets/create">
-                            <img src="../assets/google-sheets-icon.svg" class="w-4 h-4" alt="">
-                            Google Sheets
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://docs.google.com/presentation/create">
-                            <img src="../assets/google-slides-icon.svg" class="w-4 h-4" alt="">
-                            Google Slides
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://www.drive.google.com">
-                            <img src="../assets/google-drive.svg" class="w-4 h-4" alt="">
-                            Google Drive
-                        </a>
-                      </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="divider font-bold text-lg">
-                    <p class="uppercase">
-                      information
-                    </p>
-                  </div>
-                  <div class="grid grid-cols-1 sm:grid-cols-2">
-                    <div class="grid col-span-1">
-                      <input id="due_date" type="datetime-local" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" />
-                    </div>
-                    <div class="grid col-span-1">
-                      <input type="number" placeholder="# of Points" class="input input-bordered input-primary w-full max-w-xs" />
-                    </div>
-                    <div class="grid col-span-1 text-center">
-                        <label class="cursor-pointer label">
-                          <span class="label-text">Lock After Req. Date:</span>
-                          <input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
+      <button type="button" class="btn btn-ghost float-end" id="exit_assignment_button">
+        X
+      </button>
+      <div id="assignment_container">
+        <div class="card flex max-w-full p-10 my-10 sm:max-w-screen-sm mx-auto bg-base-100 drop-shadow-2xl">
+          <div class="grid grid-cols-1 sm:grid-cols-2 text-center">
+            <div class="grid col-span-1">
+              <h1 class="text-3xl self-center underline underline-offset-2">
+                Assignments
+              </h1>
+            </div>
+            <div class="grid col-span-1 p-5 sm:p-0">
+              <button onclick="create_assignments_modal.showModal()" class="btn btn-primary">
+                <img src="../assets/add_plus.svg" alt="" class="w-4 h-4">
+                Create Assignment
+              </button>
+              <dialog id="create_assignments_modal" class="modal modal-bottom sm:modal-middle">
+                <form method="dialog" class="modal-box">
+                  <h1 class="text-2xl font-bold underline underline-offset-2">
+                    Assignment Name: <span id="assignment_name"></span> <!-- PostAssignment.js -->
+                  </h1>
+                  <div>
+                    <label class="form-control">
+                      <div class="label">
+                        <span class="label-text">
+                          Enter Title
+                        </span>
+                      </div>
+                      <textarea id="textarea_title" class="textarea textarea-primary" placeholder="Enter Content"></textarea>
+                    </label>
+                    <label class="form-control">
+                      <div class="label">
+                        <span class="label-text">
+                          Enter Description
+                        </span>
+                      </div>
+                      <textarea id="textarea_description" class="textarea textarea-primary" placeholder="Title of assigment (Optional 😊)"></textarea>
+                    </label>
+                    <div class="divider font-bold text-lg uppercase">Attatch Files</div>
+                    <div class="grid grid-cols-3 gap-y-2">
+                      <input type="file" class="file-input col-span-full sm:col-span-2 file-input-bordered w-full max-w-full" />
+                      <div class="dropdown dropdown-top col-span-full sm:col-span-1">
+                        <label tabindex="0" class="btn m-1">
+                          <img src="../assets/add_plus.svg" class="w-4 h-4" alt="">
                         </label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                          <li>
+                            <a href="https://docs.google.com/document/create">
+                              <img src="../assets/google-docs.svg" class="w-4 h-4" alt="">
+                              Google Docs
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://docs.google.com/spreadsheets/create">
+                              <img src="../assets/google-sheets-icon.svg" class="w-4 h-4" alt="">
+                              Google Sheets
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://docs.google.com/presentation/create">
+                              <img src="../assets/google-slides-icon.svg" class="w-4 h-4" alt="">
+                              Google Slides
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://www.drive.google.com">
+                              <img src="../assets/google-drive.svg" class="w-4 h-4" alt="">
+                              Google Drive
+                          </a>
+                        </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="divider font-bold text-lg">
+                      <p class="uppercase">
+                        information
+                      </p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2">
+                      <div class="grid col-span-1">
+                        <input id="due_date" type="datetime-local" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" />
+                      </div>
+                      <div class="grid col-span-1">
+                        <input type="number" placeholder="# of Points" class="input input-bordered input-primary w-full max-w-xs" />
+                      </div>
+                      <div class="grid col-span-1 text-center">
+                          <label class="cursor-pointer label">
+                            <span class="label-text">Lock After Req. Date:</span>
+                            <input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
+                          </label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="modal-action flex justify-between">
-                  <button class="btn">Close</button>
-                  <button onclick="createNewAssignment()" class="btn btn-primary">Create Assignment</button>
-                </div>
-              </form>
-            </dialog>
+                  <div class="modal-action flex justify-between">
+                    <button class="btn">Close</button>
+                    <button onclick="createNewAssignment()" class="btn btn-primary">Create Assignment</button>
+                  </div>
+                </form>
+              </dialog>
+            </div>
           </div>
-        </div>
-        <div class="card-body" id="assignment_contents">
+          <div class="card-body" id="assignment_contents">
+          </div>
         </div>
       </div>
+      <div id="assignment_details" class="container p-10"></div>
       <script src="../script/PostAssignments.js"></script>
       <script src="../script/LocalStorage.js"></script>
       <script src="../script/validation.js"></script>

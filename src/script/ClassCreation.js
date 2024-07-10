@@ -157,7 +157,6 @@ function generateClassroom(data) {
         // Hide Assignments Section
         assignmentsCard.classList.add("hidden");
         cardWrapper.classList.add("hidden");
-        classroomEmptyMessage.classList.remove("hidden");
     });
 
 
