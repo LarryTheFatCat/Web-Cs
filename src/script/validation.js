@@ -12,95 +12,61 @@ const userPasswordConfirmLabel = document.getElementById("password_label_confirm
 const name = document.getElementById("user_name");
 const nameLabel = document.getElementById("name_label");
 
+/**
+ *  @function checkLogin() - Performs a basic check, if 1 wrong, return all wrong, all right, return redirect to classroom.
+ * @returns - Returns page redirect of the validation is correct
+ */
 function checkLogin() {
     let regexUsername = /^[0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
-    // if any are wrong, return whole thing as wrong
-    if (!regexUsername.test(username.value)) {
+    if (!regexUsername.test(username.value) || !regexPassword.test(password.value)) {
         usernameLabel.classList.remove("input-primary");
         usernameLabel.classList.add("input-error");
-        passwordLabel.classList.remove("input-primary");
-        passwordLabel.classList.add("input-error");
-        toolTip.classList.remove("hidden");
-        return;
-        
-    } else if (!regexPassword.test(password.value)) {
-        usernameLabel.classList.remove("input-primary");
-        usernameLabel.classList.add("input-error");
-        passwordLabel.classList.remove("input-primary");
-        passwordLabel.classList.add("input-error");
-        toolTip.classList.remove("hidden");
-        return;
 
+        passwordLabel.classList.remove("input-primary");
+        passwordLabel.classList.add("input-error");
+        toolTip.classList.remove("hidden");
+        return;
     } else {
         usernameLabel.classList.remove("input-error");
         usernameLabel.classList.add("input-primary");
+
         passwordLabel.classList.remove("input-error");
         passwordLabel.classList.add("input-primary");
-        toolTip.classList.add("hidden");
-        sessionStorage.setItem("username", username.value);
-        return location.href = "/src/classes.html";
 
+        toolTip.classList.remove("hidden");
+        toolTip.classList.add("hidden");
+        return location.href = "/src/classes.html";
     }
 }
 
+/**
+ * @function checkSignUp() - User input function (both depicted off signup.html && login.html), checks and creates an account for user.
+ * @returns - If 1 wrong, return all wrong. Else, redirect to login page **SEE JSDOCS FOR LOGIN INFO**
+ */
 function checkSignUp() {
     let regexUsername = /^[a-zA-Z0-9]+$/;
     let regexPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-    if (!regexEmail.test(email.value)) {
+    if (!regexEmail.test(email.value) || !regexUsername.test(username.value) || !regexPassword.test(password.value) || password.value !== userPasswordConfirm.value) {
         emailLabel.classList.add("input-error");
         usernameLabel.classList.add("input-error");
         passwordLabel.classList.add("input-error");
-        nameLabel.classList.add("input-error");
         userPasswordConfirmLabel.classList.add("input-error");
         return;
-
-    } else if (!regexUsername.test(username.value)) {
-        emailLabel.classList.add("input-error");
-        usernameLabel.classList.add("input-error");
-        passwordLabel.classList.add("input-error");
-        nameLabel.classList.add("input-error");
-        userPasswordConfirmLabel.classList.add("input-error");
-        return;
-
-    } else if (!regexPassword.test(password.value)) {
-        emailLabel.classList.add("input-error");
-        usernameLabel.classList.add("input-error");
-        passwordLabel.classList.add("input-error");
-        nameLabel.classList.add("input-error");
-        userPasswordConfirmLabel.classList.add("input-error");
-        return;
-
-    } else if (name.value == "") {
-        emailLabel.classList.add("input-error");
-        usernameLabel.classList.add("input-error");
-        passwordLabel.classList.add("input-error");
-        nameLabel.classList.add("input-error");
-        userPasswordConfirmLabel.classList.add("input-error");
-        return;
-
-    } else if (password.value != userPasswordConfirm.value) {
-        emailLabel.classList.add("input-error");
-        usernameLabel.classList.add("input-error");
-        passwordLabel.classList.add("input-error");
-        nameLabel.classList.add("input-error");
-        userPasswordConfirmLabel.classList.add("input-error");
-        return;
-
     } else {
         /**
-         * On success, just redirect to login for "security purposes"... lol
-         */
+        * On success, just redirect to login for "security purposes"... lol
+        */
         emailLabel.classList.remove("input-error");
         usernameLabel.classList.remove("input-error");
         passwordLabel.classList.remove("input-error");
         nameLabel.classList.remove("input-error");
         userPasswordConfirmLabel.classList.remove("input-error");
         sessionStorage.setItem("name", name.value);
+        
         return location.href = "/src/sub-pages/login.html"
-
     }
 }
 
