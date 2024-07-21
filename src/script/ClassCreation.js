@@ -24,6 +24,8 @@ const inputPosterLabel = document.getElementById("input_poster_label");
 const announcementError = document.getElementById("announcement_erorr");
 
 const classroomEmptyMessage = document.getElementById("classroom_empty_message");
+const classroomEmptyImage = document.getElementById("classroom_empty_image");
+
 
 const assignmentsCard = document.getElementById("assignments_card");
 
@@ -76,6 +78,7 @@ function renderClasses() {
  */
 function generateClassroom(data) {
     classroomEmptyMessage.classList.add("hidden");
+    classroomEmptyImage.classList.add("hidden");
     classesGroup.classList.remove("hidden");
     let classNameValue = className.value;
 
@@ -209,6 +212,8 @@ function postAnnouncement() {
     let contentWrapper = document.createElement("div");
     let content = document.createElement("p");
 
+    let usernameTextValue = sessionStorage.getItem("username").indexOf(0);
+
     content.id = "text_content"
 
     if (inputPoster.value <= 0) {
@@ -229,7 +234,8 @@ function postAnnouncement() {
     avatarPlaceHolder.appendChild(avatarStyling);
     idAvatarProfile.classList.add("text-2xl");
     avatarStyling.appendChild(idAvatarProfile);
-    idAvatarProfile.textContent = sessionStorage.getItem("username").charAt(0);
+    idAvatarProfile.textContent = usernameTextValue;
+    console.log(usernameTextValue);
     idAvatarName.classList.add("self-center", "ml-2", "underline", "underline-offset-2", "font-bold");
     avatarPlaceHolder.appendChild(idAvatarName);
     idAvatarName.textContent = sessionStorage.getItem("username");

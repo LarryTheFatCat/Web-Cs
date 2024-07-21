@@ -13,8 +13,8 @@ const name = document.getElementById("user_name");
 const nameLabel = document.getElementById("name_label");
 
 /**
- *  @function checkLogin() - Performs a basic check, if 1 wrong, return all wrong, all right, return redirect to classroom.
- * @returns - Returns page redirect of the validation is correct
+ * @function checkLogin() - Performs a basic check, if 1 wrong, return all wrong, all right, return redirect to classroom.
+ * @returns               - Returns page redirect of the validation is correct
  */
 function checkLogin() {
     let regexUsername = /^[0-9]+$/;
@@ -42,7 +42,7 @@ function checkLogin() {
 
 /**
  * @function checkSignUp() - User input function (both depicted off signup.html && login.html), checks and creates an account for user.
- * @returns - If 1 wrong, return all wrong. Else, redirect to login page **SEE JSDOCS FOR LOGIN INFO**
+ * @returns                - If 1 wrong, return all wrong. Else, redirect to login page **SEE JSDOCS FOR LOGIN INFO**
  */
 function checkSignUp() {
     let regexUsername = /^[a-zA-Z0-9]+$/;
