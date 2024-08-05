@@ -212,7 +212,7 @@ function postAnnouncement() {
     let contentWrapper = document.createElement("div");
     let content = document.createElement("p");
 
-    let usernameTextValue = sessionStorage.getItem("username").indexOf(0);
+    let usernameTextValue = sessionStorage.getItem("name").charAt(0);
 
     content.id = "text_content"
 
@@ -226,7 +226,7 @@ function postAnnouncement() {
         inputPosterLabel.classList.remove("input-error");
         announcementError.classList.add("hidden");
     }
-    card.classList.add("card", "col-span-2", "max-w-full", "p-5", "self-center", "bg-base-100", "drop-shadow-2xl", "border-black");
+    card.classList.add("card", "max-w-full", "p-5", "mt-8","self-center", "bg-base-100", "drop-shadow-2xl", "border-black");
     cardWrapper.append(card);
     avatarPlaceHolder.classList.add("avatar", "placeholder");
     card.appendChild(avatarPlaceHolder);
@@ -238,7 +238,7 @@ function postAnnouncement() {
     console.log(usernameTextValue);
     idAvatarName.classList.add("self-center", "ml-2", "underline", "underline-offset-2", "font-bold");
     avatarPlaceHolder.appendChild(idAvatarName);
-    idAvatarName.textContent = sessionStorage.getItem("username");
+    idAvatarName.textContent = sessionStorage.getItem("name");
     contentWrapper.classList.add("p-5")
     card.appendChild(contentWrapper);
     content.textContent = inputPoster.value;
