@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../output.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <title>Web Classroom</title>
   </head>
   <body>
@@ -13,10 +15,10 @@
           <button type="button" class="btn btn-ghost">Online Classroom</button>
         </a>
       </div>
-      <div class="navbar-end">
+      <div class="navbar-end visible md:hidden">
         <div class="dropdown dropdown-bottom dropdown-left">
           <label tabindex="0" class="btn m-1">
-            <img src="../assets/menu.svg" alt="Responsive menu svg" class="h-5 w-5 visible md:hidden">
+            <img src="../assets/menu.svg" alt="Responsive menu svg" class="h-5 w-5">
           </label>
           <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box">
             <li><a>
@@ -136,6 +138,8 @@
           <label id="password_label" class="input input-bordered input-primary flex items-center gap-2">
             <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
             <input id="user_password" type="password" class="grow" placeholder="Password" required>
+            <i class="bi bi-eye-slash" id="icon_visibility"></i>
+
           </label>
           <br>
           <label id="name_label" class="input input-bordered input-primary flex items-center gap-2">
@@ -146,6 +150,7 @@
           <label id="password_label_confirm" class="input input-bordered input-primary flex items-center gap-2">
             <img src="../assets/key.svg" alt="User Password SVG logo input" class="h-4 w-4">
             <input id="user_password_confirm" type="password" class="grow" placeholder="Confirm Password" required>
+            <i class="bi bi-eye-slash" id="confirm_icon_visibility"></i>
           </label>
           
             <label class="cursor-pointer flex justify-center mt-5">
@@ -162,4 +167,5 @@
   </body>
   <script src="../script/LocalStorage.js"></script>
   <script src="../script/validation.js"></script>
+  <script src="../script/PasswordVisibility.js"></script>
 </html>
