@@ -1,5 +1,5 @@
-# Nodule Dependencies
+# Node Dependencies
 node_modules
 
-# NextJS Production Folder
+# .next dev folder
 .next
