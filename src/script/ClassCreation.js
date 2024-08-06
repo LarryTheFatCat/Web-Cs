@@ -148,6 +148,7 @@ function generateClassroom(data) {
 
     });
     exitClassRoom.addEventListener("click", function () {
+        document.title = "Classroom";
         div.classList.remove("hidden");
         exitClassRoom.classList.add("hidden");
         banner.classList.add("hidden");
