@@ -4,7 +4,7 @@ import UserIcon from "../assets/UserIcon";
 import PasswordIcon from "../assets/PasswordIcon";
 import NameIcon from "../assets/NameIcon";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 export default function SignUp() {
     const [captureInfo, setCaptureInfo] = useState({
