@@ -22,11 +22,11 @@ export default function Login() {
         let password = localStorage.getItem("password");
         if (input.username !== username || input.password !== password) {
             errorClass.current.forEach((element) => {
-                if(errorClass) {
+                if (errorClass) {
                     element.className = "input input-bordered input-error flex items-center gap-2";
                 } else {
                     element.className = "input input-bordered input-primary flex items-center gap-2";
-                    router.push("/subpages/ClassList/ClassList")
+                    router.push("/subpages/ClassList/ClassList");
                 }
             });
         }
@@ -48,7 +48,7 @@ export default function Login() {
                         <br />
                         <label ref={(element) => (errorClass.current[1] = element)} className="input input-bordered input-primary flex items-center gap-2" id="password_label">
                             <PasswordIcon />
-                            <input type="password"  value={input.password} name="password" onChange={updateInput} className="grow" placeholder="Password" id="user_password" />
+                            <input type="password" value={input.password} name="password" onChange={updateInput} className="grow" placeholder="Password" id="user_password" />
                             <i className="bi bi-eye-slash" id="icon_visibility" />
                         </label>
                         <button type="button" className="btn btn-primary mt-5" onClick={updateLoginInfo}>
