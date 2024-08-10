@@ -1,7 +1,8 @@
+import NavBar from "@/pages/components/NavBar";
 function ClassList() {
-    return(
+    return (
         <div>
-            hi
+            <NavBar />
         </div>
     )
 }
