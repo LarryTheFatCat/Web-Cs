@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Icon from "../assets/HamburgerIcon";
 import SettingIcon from "../assets/SettingIcon";
 import Link from "next/link";
+import Image from "next/image";
+
 
 export const NavBar = () => {
     // desktop local storage
     const [checked, setChecked] = useState(false);
     const [checkInfo, setCheckInfo] = useState(false); // init value false, set true if localStorage name exists, else return false
-    const [name, setName] = useState("");
+    const [profileIcon, setProfileIcon] = useState();
     const router = useRouter();
 
     useEffect(() => {
@@ -20,12 +22,11 @@ export const NavBar = () => {
             } else {
                 setChecked(saveChecked);
             }
-            let name = localStorage.getItem("name");
-            if (name !== null) {
-                setName(name.charAt(0));
+            let profileIcon = localStorage.getItem("profile_icon");
+            if (profileIcon !== null) {
+                setProfileIcon(profileIcon);
                 setCheckInfo(true);
             } else {
-                window.location.reload();
                 setCheckInfo(false);
             }
         };
@@ -92,13 +93,18 @@ export const NavBar = () => {
                         <div className="avatar">
                             <details className="dropdown dropdown-bottom dropdown-left">
                                 <summary tabIndex={0} className="btn m-1">
-                                    {name}
+                                    <Image width={120} height={120} src={profileIcon} />
                                 </summary>
                                 <ul tabIndex={0} className="menu self-center dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                     <li>
                                         <Link href="/subpages/Settings">
                                             <SettingIcon />
                                             Settings
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/">
+                                            Home
                                         </Link>
                                     </li>
                                     <li>
